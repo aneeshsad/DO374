@@ -1,0 +1,20 @@
+- name: Setup networking
+  hosts:
+    - servera
+    - serverb
+  become: true
+
+  vars:
+
+    network_connections:
+      - name: datacenter
+        type: ethernet
+        interface_name: eth1
+        state: up
+        ip:
+          dhcp4: no
+          address:
+            - "{{ datacenter_ip }}/24"
+
+  roles:
+    - rhel-system-roles.network

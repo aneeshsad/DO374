@@ -1,0 +1,12 @@
+- name: Demonstrate globbing
+  hosts: localhost
+  become: false
+  gather_facts: false
+
+  tasks:
+
+    - name: Ensure f*.conf file contents are listed
+      loop: "{{ query('fileglob', '/etc/f*.conf') }}"
+      debug:
+        msg: "{{ query('file', item) }}"
+

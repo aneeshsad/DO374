@@ -1,0 +1,17 @@
+---
+- name: Create our bedrock world!
+  hosts: all
+  gather_facts: true
+  tasks:
+
+    - name: Ensure variables are included 
+      include_vars:
+        file: user_data.yml
+
+    - name: Ensure users are created
+      no_log: true
+      user:
+        name: "{{ item.username }}"
+        password: "{{ item.userpass | password_hash('sha512') }}"
+        update_password: on_create
+      loop: "{{ bedrockers }}"

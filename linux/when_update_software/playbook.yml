@@ -1,0 +1,12 @@
+- name: Update all software packages on RHEL systems
+  hosts: all
+  gather_facts: true
+
+  tasks:
+
+    - name: Update software
+      when: ansible_facts['distribution']  == "RedHat" and ansible_facts['distribution_major_version'] | int >= 6
+      become: true
+      yum:
+        name: '*'
+        state: latest

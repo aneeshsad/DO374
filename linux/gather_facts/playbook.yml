@@ -1,0 +1,5 @@
+- name: Fact gathering for caching in Ansible Tower
+  hosts: all
+  gather_facts: true
+
+

@@ -1,0 +1,14 @@
+[webservers]
+server[a:b]
+
+[dbservers]
+serverc
+
+[lb]
+serverd
+
+[rhel8]
+server[a:d]
+
+[linux:children]
+rhel8
